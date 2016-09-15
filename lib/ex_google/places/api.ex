@@ -26,7 +26,7 @@ While the examples below show few parameters, passing any parameters that google
 
     alias ExGoogle.Places.Api, as: Places
     # place detail search
-    Places.search(%{placeid: "ChIJL_zTW3FdvIcR2qmNStcaCdA"})
+    Places.search(%{place_id: "ChIJL_zTW3FdvIcR2qmNStcaCdA"})
 
     # text search
     Places.search(%{query: "Restaurant"}, :text)
