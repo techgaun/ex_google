@@ -8,7 +8,6 @@ defmodule ExGoogle.Places.Api do
   import ExGoogle.Utils
 
   @base_url "https://maps.googleapis.com/maps/api/place"
-  @output "json"
   @endpoints [details: "details", nearby: "nearbysearch", text: "textsearch"]
   @supported_types [:details, :nearby, :text]
 
@@ -37,7 +36,7 @@ defmodule ExGoogle.Places.Api do
   def search(params, type \\ :details)
   def search(params, type) when is_map(params) and map_size(params) > 0 and type in @supported_types do
     params
-    |> Map.put(:key, config[:api_key])
+    |> Map.put(:key, api_key)
     |> build_url(type)
     |> Api.get(request_headers)
     |> Parser.parse

@@ -8,9 +8,6 @@ defmodule ExGoogle.Maps.Api do
   import ExGoogle.Utils
 
   @base_url "https://maps.googleapis.com/maps/api/geocode"
-  @output "json"
-  @user_agent [{"User-agent", "Brighterlink"}]
-  @content_type [{"Content-Type", "application/json"}]
 
   @doc """
   Use google maps api to perform geocoding and reverse geocoding
@@ -22,20 +19,20 @@ defmodule ExGoogle.Maps.Api do
 
   ## Examples
 
-      alias ExGoogle.Places.Api, as: Places
+      alias ExGoogle.Maps.Api, as: Maps
       # google maps reverse geocoding
-      Api.search(%{latlng: "40.714224,-73.961452"})
+      Maps.search(%{latlng: "40.714224,-73.961452"})
 
       # google maps geocoding
-      Api.search(%{query: "Restaurant"})
+      Maps.search(%{query: "Restaurant"})
 
       # Advanced parameters
-      Api.search(%{latlng: location, location_type: "ROOFTOP|RANGE_INTERPOLATED|GEOMETRIC_CENTER", result_type: "street_address"})
+      Maps.search(%{latlng: "40.714224,-73.961452", location_type: "ROOFTOP|RANGE_INTERPOLATED|GEOMETRIC_CENTER", result_type: "street_address"})
   """
   @spec search(map) :: {:ok, binary} | {:error, binary}
   def search(params) when is_map(params) and map_size(params) > 0 do
     params
-    |> Map.put(:key, config[:places_api_key])
+    |> Map.put(:key, api_key)
     |> build_url
     |> Api.get(request_headers)
     |> Parser.parse
