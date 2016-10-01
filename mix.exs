@@ -10,6 +10,7 @@ defmodule ExGoogle.Mixfile do
      package: package,
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
+     docs: [extras: ["README.md"]],
      deps: deps()]
   end
 
@@ -32,6 +33,8 @@ defmodule ExGoogle.Mixfile do
   defp deps do
     [
       {:httpoison, "~> 0.9.0"},
+      {:earmark, "~> 0.1", only: :dev},
+      {:ex_doc, "~> 0.11", only: :dev},
       {:dogma, "~> 0.1", only: [:dev, :test]}
     ]
   end
