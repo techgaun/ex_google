@@ -1,4 +1,6 @@
-# ExGoogle [![Build Status](https://semaphoreci.com/api/v1/samaracharya/ex_google/branches/master/badge.svg)](https://semaphoreci.com/samaracharya/ex_google)
+# ExGoogle
+
+[![Build Status](https://semaphoreci.com/api/v1/samaracharya/ex_google/branches/master/badge.svg)](https://semaphoreci.com/samaracharya/ex_google)
 
 > Google Cloud SDK for Elixir
 
