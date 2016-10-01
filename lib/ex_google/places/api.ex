@@ -56,6 +56,6 @@ defmodule ExGoogle.Places.Api do
 
   @spec build_url(map, String.t) :: String.t
   def build_url(params, type) do
-    "#{@base_url}/#{@endpoints[type]}/#{@output}?#{URI.encode_query(params)}"
+    "#{@base_url}/#{@endpoints[type]}/#{output}?#{URI.encode_query(params)}"
   end
 end
