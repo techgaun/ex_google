@@ -3,7 +3,7 @@ defmodule ExGoogle.Mixfile do
 
   def project do
     [app: :ex_google,
-     version: "0.1.0",
+     version: "0.1.1",
      elixir: "~> 1.2",
      description: "Elixir SDK for Google Cloud APIs",
      source_url: "https://github.com/techgaun/ex_google",
