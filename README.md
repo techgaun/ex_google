@@ -45,14 +45,32 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
 
 ## Usage
 
-  1. You can import and use the google places and maps api as below:
+You can import and use the google places and maps api as below. Also, note that you can pass any query parameter that google apis support.
+
+### [Google Maps](https://developers.google.com/maps/documentation/geocoding/intro)
 
     ```elixir
     alias ExGoogle.Maps.Api, as: Maps
     # google maps reverse geocoding
     Maps.search(%{latlng: "40.714224,-73.961452"})
 
+    # google maps geocoding
+    Maps.search(%{address: "1600 Amphitheatre Parkway, Mountain View, CA"})
+
+    # Advanced parameters
+    Maps.search(%{latlng: "40.714224,-73.961452", location_type: "ROOFTOP|RANGE_INTERPOLATED|GEOMETRIC_CENTER", result_type: "street_address"})
+    ```
+
+### [Google Places](https://developers.google.com/places/web-service/)
+
+    ```elixir
     alias ExGoogle.Places.Api, as: Places
     # place detail search
     Places.search(%{placeid: "ChIJL_zTW3FdvIcR2qmNStcaCdA"})
+
+    # text search
+    Places.search(%{query: "Restaurant"}, :text)
+
+    # nearby search
+    Places.search(%{location: "38,-94", radius: 1000}, :nearby)
     ```

@@ -24,7 +24,7 @@ defmodule ExGoogle.Maps.Api do
       Maps.search(%{latlng: "40.714224,-73.961452"})
 
       # google maps geocoding
-      Maps.search(%{query: "Restaurant"})
+      Maps.search(%{address: "1600 Amphitheatre Parkway, Mountain View, CA"})
 
       # Advanced parameters
       Maps.search(%{latlng: "40.714224,-73.961452", location_type: "ROOFTOP|RANGE_INTERPOLATED|GEOMETRIC_CENTER", result_type: "street_address"})
