@@ -54,6 +54,22 @@ defmodule ExGoogle.Places.Api do
     search(%{location: lat_long, radius: radius}, :nearby)
   end
 
+  @doc """
+  Filter given data list to only include particular keys in each item of a list
+  """
+  # FIXME: Move this to some convenience helper
+  def filter_data(datalist, items \\ ["name", "id", "place_id", "vicinity", "types"]) do
+    case datalist do
+      {:ok, places} ->
+        places
+        |> Enum.map(fn x ->
+          Map.take(x, items)
+        end)
+      _ ->
+        []
+    end
+  end
+
   @spec build_url(map, String.t) :: String.t
   def build_url(params, type) do
     "#{@base_url}/#{@endpoints[type]}/#{output}?#{URI.encode_query(params)}"
