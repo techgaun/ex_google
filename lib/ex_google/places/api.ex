@@ -36,9 +36,9 @@ defmodule ExGoogle.Places.Api do
   def search(params, type \\ :details)
   def search(params, type) when is_map(params) and map_size(params) > 0 and type in @supported_types do
     params
-    |> Map.put(:key, api_key)
+    |> Map.put(:key, api_key())
     |> build_url(type)
-    |> Api.get(request_headers)
+    |> Api.get(request_headers())
     |> Parser.parse
   end
   def search(_, _), do: {:error, "invalid request"}
@@ -72,6 +72,6 @@ defmodule ExGoogle.Places.Api do
 
   @spec build_url(map, String.t) :: String.t
   def build_url(params, type) do
-    "#{@base_url}/#{@endpoints[type]}/#{output}?#{URI.encode_query(params)}"
+    "#{@base_url}/#{@endpoints[type]}/#{output()}?#{URI.encode_query(params)}"
   end
 end

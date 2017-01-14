@@ -1,6 +1,6 @@
 # ExGoogle
 
-[![Build Status](https://semaphoreci.com/api/v1/techgaun/ex_google/branches/master/badge.svg)](https://semaphoreci.com/techgaun/ex_google)
+[![Build Status](https://semaphoreci.com/api/v1/techgaun/ex_google/branches/master/badge.svg)](https://semaphoreci.com/techgaun/ex_google) [![Hex version](https://img.shields.io/hexpm/v/ex_google.svg "Hex version")](https://hex.pm/packages/ex_google) ![Hex downloads](https://img.shields.io/hexpm/dt/ex_google.svg "Hex downloads")
 
 > Google Cloud SDK for Elixir
 

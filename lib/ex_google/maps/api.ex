@@ -32,9 +32,9 @@ defmodule ExGoogle.Maps.Api do
   @spec search(map) :: {:ok, binary} | {:error, binary}
   def search(params) when is_map(params) and map_size(params) > 0 do
     params
-    |> Map.put(:key, api_key)
+    |> Map.put(:key, api_key())
     |> build_url
-    |> Api.get(request_headers)
+    |> Api.get(request_headers())
     |> Parser.parse
   end
   def search(_), do: {:error, "invalid request"}
