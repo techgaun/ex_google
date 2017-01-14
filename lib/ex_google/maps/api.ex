@@ -41,6 +41,6 @@ defmodule ExGoogle.Maps.Api do
 
   @spec build_url(map) :: String.t
   def build_url(params) do
-    "#{@base_url}/#{output}?#{URI.encode_query(params)}"
+    "#{@base_url}/#{output()}?#{URI.encode_query(params)}"
   end
 end
