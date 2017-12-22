@@ -1,6 +1,6 @@
 defmodule ExGoogle.Timezone.Api do
   @moduledoc """
-  Simple API wrapper for google maps
+  Simple API wrapper for google timezone
   """
   use HTTPoison.Base
   alias __MODULE__
@@ -10,24 +10,26 @@ defmodule ExGoogle.Timezone.Api do
   @base_url "https://maps.googleapis.com/maps/api/timezone"
 
   @doc """
-  Use google maps api to perform geocoding and reverse geocoding
+  Use google timezone api to find the timezone of the lat/long submitted
 
-  The first params map can consist of any field that google map supports.
-  While the examples below show few parameters, passing any parameters that google maps api supports works.
+  Required parameters:
+  - location: comma separated string of latitude and longitude
+  - timestamp: time in seconds since Jan 1st, 1970 UTC to use as reference for taking
+    into account any time shifts such as daylight savings time.
+
+  Optional parameters:
+  - language: desired language to show results in. [list of supported languages](https://developers.google.com/maps/faq#languagesupport)
 
   * [Google Maps API](https://developers.google.com/maps/documentation/timezone/intro)
 
   ## Examples
 
-      alias ExGoogle.Maps.Api, as: Maps
-      # google maps reverse geocoding
-      Maps.search(%{latlng: "40.714224,-73.961452"})
-
-      # google maps geocoding
-      Maps.search(%{address: "1600 Amphitheatre Parkway, Mountain View, CA"})
+      alias ExGoogle.Timezone.Api, as: Timezone
+      # get timezone for location
+      Timezone.search(%{location: "40.714224,-73.961452", timestamp: 1513964317})
 
       # Advanced parameters
-      Maps.search(%{latlng: "40.714224,-73.961452", location_type: "ROOFTOP|RANGE_INTERPOLATED|GEOMETRIC_CENTER", result_type: "street_address"})
+      Timezone.search(%{location: "40.714224,-73.961452", timestamp: 1513964317, language: "tl"})
   """
   @spec search(map) :: {:ok, binary} | {:error, binary}
   def search(params) when is_map(params) and map_size(params) > 0 do
