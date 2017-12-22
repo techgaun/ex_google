@@ -42,7 +42,8 @@ defmodule ExGoogle.Mixfile do
   defp package do
     [
       maintainers: [
-        "Samar Acharya"
+        "Samar Acharya",
+        "Jonathan Hockman"
       ],
       licenses: ["Apache-2.0"],
       links: %{"GitHub" => "https://github.com/techgaun/ex_google"}
