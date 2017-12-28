@@ -35,7 +35,7 @@ defmodule ExGoogle.Mixfile do
       {:httpoison, "~> 0.13.0"},
       {:earmark, "~> 0.1", only: :dev},
       {:ex_doc, "~> 0.11", only: :dev},
-      {:dogma, "~> 0.1", only: [:dev, :test]}
+      {:credo, "~> 0.8", only: [:dev, :test], runtime: false}
     ]
   end
 
