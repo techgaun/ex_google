@@ -33,7 +33,7 @@ defmodule ExGoogle.Maps.Api do
   def search(params) when is_map(params) and map_size(params) > 0 do
     params
     |> Map.put(:key, api_key())
-    |> build_url
+    |> build_url()
     |> Api.get(request_headers())
     |> Parser.parse
   end

@@ -3,7 +3,7 @@ defmodule ExGoogle.Mixfile do
 
   def project do
     [app: :ex_google,
-     version: "0.1.4",
+     version: "0.2.0",
      elixir: "~> 1.2",
      description: "Elixir SDK for Google Cloud APIs",
      source_url: "https://github.com/techgaun/ex_google",
@@ -33,6 +33,7 @@ defmodule ExGoogle.Mixfile do
   defp deps do
     [
       {:httpoison, "~> 0.13.0"},
+      {:poison, "~> 3.1.0", override: true},
       {:earmark, "~> 0.1", only: :dev},
       {:ex_doc, "~> 0.11", only: :dev},
       {:credo, "~> 0.8", only: [:dev, :test], runtime: false}
