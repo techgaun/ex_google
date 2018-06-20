@@ -32,7 +32,7 @@ defmodule ExGoogle.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:httpoison, "~> 0.13.0"},
+      {:httpoison, "~> 1.2"},
       {:poison, "~> 3.1.0", override: true},
       {:earmark, "~> 0.1", only: :dev},
       {:ex_doc, "~> 0.11", only: :dev},
