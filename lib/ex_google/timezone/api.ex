@@ -37,11 +37,12 @@ defmodule ExGoogle.Timezone.Api do
     |> Map.put(:key, api_key())
     |> build_url
     |> Api.get(request_headers())
-    |> Parser.parse
+    |> Parser.parse()
   end
+
   def search(_), do: {:error, "invalid request"}
 
-  @spec build_url(map) :: String.t
+  @spec build_url(map) :: String.t()
   def build_url(params) do
     "#{@base_url}/#{output()}?#{URI.encode_query(params)}"
   end

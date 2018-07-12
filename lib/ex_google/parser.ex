@@ -4,7 +4,8 @@ defmodule ExGoogle.Parser do
   """
 
   @type status_code :: integer
-  @type response :: {:ok, [struct]} | {:ok, struct} | :ok | {:error, map, status_code} | {:error, map} | any
+  @type response ::
+          {:ok, [struct]} | {:ok, struct} | :ok | {:error, map, status_code} | {:error, map} | any
 
   @doc """
   Parses the response
@@ -13,7 +14,8 @@ defmodule ExGoogle.Parser do
   @spec parse(tuple) :: response
   def parse(response) do
     case response do
-      {:ok, %HTTPoison.Response{body: body, headers: _, status_code: status}} when status in [200, 201] ->
+      {:ok, %HTTPoison.Response{body: body, headers: _, status_code: status}}
+      when status in [200, 201] ->
         {:ok, parse_success_response(body)}
 
       {:ok, %HTTPoison.Response{body: _, headers: _, status_code: 204}} ->
@@ -25,6 +27,7 @@ defmodule ExGoogle.Parser do
 
       {:error, %HTTPoison.Error{id: _, reason: reason}} ->
         {:error, %{reason: reason}}
+
       _ ->
         response
     end
@@ -32,9 +35,13 @@ defmodule ExGoogle.Parser do
 
   defp parse_success_response(body) do
     body
-    |> Poison.decode!
+    |> Poison.decode!()
     |> _parse_success_response
   end
-  def _parse_success_response(%{"status" => "OK", "results" => result}) when is_list(result) or is_map(result), do: result
+
+  def _parse_success_response(%{"status" => "OK", "results" => result})
+      when is_list(result) or is_map(result),
+      do: result
+
   def _parse_success_response(body), do: body
 end

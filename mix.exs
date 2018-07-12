@@ -2,16 +2,18 @@ defmodule ExGoogle.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :ex_google,
-     version: "0.2.0",
-     elixir: "~> 1.2",
-     description: "Elixir SDK for Google Cloud APIs",
-     source_url: "https://github.com/techgaun/ex_google",
-     package: package(),
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     docs: [extras: ["README.md"]],
-     deps: deps()]
+    [
+      app: :ex_google,
+      version: "0.2.0",
+      elixir: "~> 1.2",
+      description: "Elixir SDK for Google Cloud APIs",
+      source_url: "https://github.com/techgaun/ex_google",
+      package: package(),
+      build_embedded: Mix.env() == :prod,
+      start_permanent: Mix.env() == :prod,
+      docs: [extras: ["README.md"]],
+      deps: deps()
+    ]
   end
 
   # Configuration for the OTP application

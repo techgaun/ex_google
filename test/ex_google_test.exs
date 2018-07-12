@@ -12,7 +12,9 @@ defmodule ExGoogleTest do
   test "google places details works correctly" do
     place_id = "ChIJ11Zb-A87lDkR-5Kvz6bIPtc"
     result = Places.search(%{placeid: place_id})
-    assert {:ok, %{"result" => %{"formatted_address" => "Triveni Road, Bardaghat 33007, Nepal"}}} = result
+
+    assert {:ok, %{"result" => %{"formatted_address" => "Triveni Road, Bardaghat 33007, Nepal"}}} =
+             result
   end
 
   test "google places search works correctly" do

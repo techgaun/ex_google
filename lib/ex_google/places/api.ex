@@ -32,15 +32,18 @@ defmodule ExGoogle.Places.Api do
       # nearby search
       Places.search(%{location: "38,-94", radius: 1000}, :nearby)
   """
-  @spec search(map, String.t) :: {:ok, binary} | {:error, binary}
+  @spec search(map, String.t()) :: {:ok, binary} | {:error, binary}
   def search(params, type \\ :details)
-  def search(params, type) when is_map(params) and map_size(params) > 0 and type in @supported_types do
+
+  def search(params, type)
+      when is_map(params) and map_size(params) > 0 and type in @supported_types do
     params
     |> Map.put(:key, api_key())
     |> build_url(type)
     |> Api.get(request_headers())
-    |> Parser.parse
+    |> Parser.parse()
   end
+
   def search(_, _), do: {:error, "invalid request"}
 
   @doc """
@@ -65,12 +68,13 @@ defmodule ExGoogle.Places.Api do
         |> Enum.map(fn x ->
           Map.take(x, items)
         end)
+
       _ ->
         []
     end
   end
 
-  @spec build_url(map, String.t) :: String.t
+  @spec build_url(map, String.t()) :: String.t()
   def build_url(params, type) do
     "#{@base_url}/#{@endpoints[type]}/#{output()}?#{URI.encode_query(params)}"
   end
