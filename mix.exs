@@ -5,7 +5,7 @@ defmodule ExGoogle.Mixfile do
     [
       app: :ex_google,
       version: "0.2.0",
-      elixir: "~> 1.2",
+      elixir: "~> 1.5",
       description: "Elixir SDK for Google Cloud APIs",
       source_url: "https://github.com/techgaun/ex_google",
       package: package(),
