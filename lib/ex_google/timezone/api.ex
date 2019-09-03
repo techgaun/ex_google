@@ -1,9 +1,8 @@
 defmodule ExGoogle.Timezone.Api do
   @moduledoc """
-  Simple API wrapper for google timezone
+  API wrapper for google timezone
   """
-  use HTTPoison.Base
-  alias __MODULE__
+
   alias ExGoogle.Parser
   import ExGoogle.Utils
 
@@ -35,15 +34,15 @@ defmodule ExGoogle.Timezone.Api do
   def search(params) when is_map(params) and map_size(params) > 0 do
     params
     |> Map.put(:key, api_key())
-    |> build_url
-    |> Api.get(request_headers())
+    |> build_url()
+    |> HTTPoison.get(request_headers())
     |> Parser.parse()
   end
 
   def search(_), do: {:error, "invalid request"}
 
   @spec build_url(map) :: String.t()
-  def build_url(params) do
+  defp build_url(params) do
     "#{@base_url}/#{output()}?#{URI.encode_query(params)}"
   end
 end

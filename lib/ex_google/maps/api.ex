@@ -1,9 +1,8 @@
 defmodule ExGoogle.Maps.Api do
   @moduledoc """
-  Simple API wrapper for google maps
+  API wrapper for google maps
   """
-  use HTTPoison.Base
-  alias __MODULE__
+
   alias ExGoogle.Parser
   import ExGoogle.Utils
 
@@ -34,14 +33,14 @@ defmodule ExGoogle.Maps.Api do
     params
     |> Map.put(:key, api_key())
     |> build_url()
-    |> Api.get(request_headers())
+    |> HTTPoison.get(request_headers())
     |> Parser.parse()
   end
 
   def search(_), do: {:error, "invalid request"}
 
   @spec build_url(map) :: String.t()
-  def build_url(params) do
+  defp build_url(params) do
     "#{@base_url}/#{output()}?#{URI.encode_query(params)}"
   end
 end

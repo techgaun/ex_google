@@ -1,9 +1,8 @@
 defmodule ExGoogle.Places.Api do
   @moduledoc """
-  Simple API wrapper for google places
+  API wrapper for google places
   """
-  use HTTPoison.Base
-  alias __MODULE__
+
   alias ExGoogle.Parser
   import ExGoogle.Utils
 
@@ -40,7 +39,7 @@ defmodule ExGoogle.Places.Api do
     params
     |> Map.put(:key, api_key())
     |> build_url(type)
-    |> Api.get(request_headers())
+    |> HTTPoison.get(request_headers())
     |> Parser.parse()
   end
 
@@ -64,10 +63,7 @@ defmodule ExGoogle.Places.Api do
   def filter_data(datalist, items \\ ["name", "id", "place_id", "vicinity", "types"]) do
     case datalist do
       {:ok, places} ->
-        places
-        |> Enum.map(fn x ->
-          Map.take(x, items)
-        end)
+        Enum.map(places, & Map.take(&1, items))
 
       _ ->
         []
@@ -75,7 +71,7 @@ defmodule ExGoogle.Places.Api do
   end
 
   @spec build_url(map, String.t()) :: String.t()
-  def build_url(params, type) do
+  defp build_url(params, type) do
     "#{@base_url}/#{@endpoints[type]}/#{output()}?#{URI.encode_query(params)}"
   end
 end
